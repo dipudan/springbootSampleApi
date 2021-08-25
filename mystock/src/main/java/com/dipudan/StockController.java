@@ -1,4 +1,4 @@
-package org.dipudan;
+package com.dipudan;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ public class StockController {
     private StockService service;
 
     @GetMapping("/stocks")
-    public List<Stock> list(){
+    public List<Stock> lis(){
         return service.listAll();
     }
 
@@ -35,10 +35,16 @@ public class StockController {
     }
 
     @PutMapping("/stocks/{id}")
-    public ResponseEntity<Stock> update(@RequestBody Stock stock, @PathVariable Integer id){
+    public ResponseEntity<Stock> update(@RequestBody Stock stockUpdate, @PathVariable Integer id){
         try{
-            Stock existingStock = service.get(id);
-            service.save(existingStock);
+            Stock stock = service.get(id);
+
+            stock.setStockcode(stockUpdate.stockcode);
+            stock.setStockname(stockUpdate.stockname);
+            stock.setStockprice(stockUpdate.stockprice);
+            stock.setQuantity(stockUpdate.quantity);
+            stock.setTransactiontype(stockUpdate.transactiontype);
+            service.save(stock);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch(NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,8 +55,4 @@ public class StockController {
     public void delete(@PathVariable Integer id){
         service.delete(id);
     }
-
-
-
-
 }

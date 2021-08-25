@@ -1,4 +1,4 @@
-package org.dipudan;
+package com.dipudan;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

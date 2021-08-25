@@ -8,13 +8,14 @@
 		<version>2.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.dipudan</groupId>
-	<artifactId>sampleStockTracker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>sampleStockTracker</name>
+	<groupId>com.dipudan</groupId>
+	<artifactId>mystock</artifactId>
+	<name>mystock</name>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<start-class>com.dipudan.Application</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -31,11 +32,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -43,8 +39,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.5.4</version>
+				<configuration>
+					<mainClass>com.dipudan.Application</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>mystock</finalName>
 	</build>
 
 </project>
